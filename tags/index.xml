@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on xingmxteam.io</title>
+    <link>https://xingmxteam.github.io/tags/</link>
+    <description>Recent content in Tags on xingmxteam.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 20 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://xingmxteam.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>mind</title>
+      <link>https://xingmxteam.github.io/tags/mind/</link>
+      <pubDate>Fri, 20 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://xingmxteam.github.io/tags/mind/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>work</title>
+      <link>https://xingmxteam.github.io/tags/work/</link>
+      <pubDate>Fri, 20 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://xingmxteam.github.io/tags/work/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>algorithm</title>
+      <link>https://xingmxteam.github.io/tags/algorithm/</link>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://xingmxteam.github.io/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dp</title>
+      <link>https://xingmxteam.github.io/tags/dp/</link>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://xingmxteam.github.io/tags/dp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://xingmxteam.github.io/tags/programming/</link>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://xingmxteam.github.io/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tree</title>
+      <link>https://xingmxteam.github.io/tags/tree/</link>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://xingmxteam.github.io/tags/tree/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

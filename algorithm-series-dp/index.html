@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Felix Mao">
+    <meta name="description" content="Updates about my life and what I learn about creating software">
+
+    <meta name="twitter:card" content="summary_large_image"/>
+
+
+    <meta name="twitter:site" content="@codediggerfelix"/>
+    <meta name="twitter:creator" content="@codediggerfelix"/>
+
+
+    <meta property="og:title" content="Algorithm Series - DP" />
+<meta property="og:description" content="我正在学习算法，这是我的算法系列第一篇." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xingmxteam.github.io/algorithm-series-dp/" />
+
+<meta property="og:image" content="https://xingmxteam.github.io/algorithm-series-dp/tree.jpg" />
+<meta property="article:published_time" content="2021-08-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-08-16T00:00:00+00:00" />
+
+
+    
+      <base href="https://xingmxteam.github.io/algorithm-series-dp/">
+    
+    <title>Algorithm Series - DP · xingmxteam.io</title>
+
+    
+      <link rel="canonical" href="https://xingmxteam.github.io/algorithm-series-dp/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Rubik:300,700|Source+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+    
+    
+    
+
+    
+      
+      
+      <link rel="stylesheet" href="https://xingmxteam.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://xingmxteam.github.io/css/main.css" />
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://xingmxteam.github.io/images/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://xingmxteam.github.io/images/favicon/favicon-16x16.png" sizes="16x16">
+
+    
+      <link rel="alternate" type="application/rss+xml" href="https://xingmxteam.github.io/index.xml" title="xingmxteam.io" />
+    <meta name="generator" content="Hugo 0.80.0" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <div class="navigation-author">
+      <a class="navigation-avatar" href="https://xingmxteam.github.io/">
+        
+          <img src="https://xingmxteam.github.io/images/avatar.jpg" alt="Author photo">
+        
+      </a>
+      <a class="name" href="https://xingmxteam.github.io/">Felix Mao</a>
+    </div>
+
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://xingmxteam.github.io/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://xingmxteam.github.io/retrospectives/">Retrospectives</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://xingmxteam.github.io/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://xingmxteam.github.io/book-reports/">Book Reports</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://xingmxteam.github.io/about/">About</a>
+          </li>
+        
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        
+        <div class="post-title">
+          <h1 class="title">Algorithm Series - DP</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2021-08-16T00:00:00Z'>
+                August 16, 2021
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://xingmxteam.github.io/tags/algorithm/">algorithm</a>
+      <span class="separator">•</span>
+    <a href="https://xingmxteam.github.io/tags/dp/">dp</a>
+      <span class="separator">•</span>
+    <a href="https://xingmxteam.github.io/tags/tree/">tree</a>
+      <span class="separator">•</span>
+    <a href="https://xingmxteam.github.io/tags/programming/">programming</a></div>
+
+        </div>
+      </header><div>
+        <h2 id="问题定义t--s">问题定义(T &amp; S)<a href="#问题定义t--s" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<p>Given N, Find the total number of unique BSTs that can be made using values from 1 to N</p>
+<p>Examples:
+Input: n = 3
+Output: 5
+For n = 3, preorder traversal of</p>
+<ol>
+<li>1 2 3</li>
+<li>1 3 2</li>
+<li>2 1 3</li>
+<li>3 1 2</li>
+<li>3 2 1</li>
+</ol>
+<p>Input: 4
+Output: 14</p>
+<h2 id="问题解析a">问题解析(A)<a href="#问题解析a" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<p>一开始这个问题没太懂是什么意思，咋一想觉得就一种情况（思维定势了），什么是BST（binary search tree），它的定义是： 任意节点的值小于右子树任意节点，大于左子树任意节点。先想，边画出来，其实是可以有多种情况的。 比如给出节点3 1 2，至少可以这么排列， 是满足BST的条件的
+<img src="https://img.alicdn.com/imgextra/i4/O1CN012epCeb1gxJLOy60PJ_!!6000000004208-2-tps-1629-716.png" alt="https://img.alicdn.com/imgextra/i4/O1CN012epCeb1gxJLOy60PJ_!!6000000004208-2-tps-1629-716.png">
+再认真想一下可以继续想出其他排列方式：
+<img src="https://img.alicdn.com/imgextra/i2/O1CN01LCisNs1F4MCD9ujmy_!!6000000000433-2-tps-3287-1443.png" alt="https://img.alicdn.com/imgextra/i2/O1CN01LCisNs1F4MCD9ujmy_!!6000000000433-2-tps-3287-1443.png"></p>
+<p>OK，理解清楚了题意。 那么，怎么分析这出n个节点的BST树的个数呢。 们用分析归纳法，找规律</p>
+<ul>
+<li>
+<p>1 如果只有一个节点，显然只有一种情况，我们标记为T(1) = 1</p>
+</li>
+<li>
+<p>2 如果有两个节点，有两种情况 我们标记为T(2) = 2
+<img src="https://img.alicdn.com/imgextra/i4/O1CN01eEPUIg1urGjsKPygS_!!6000000006090-0-tps-580-255.jpg" alt="https://img.alicdn.com/imgextra/i4/O1CN01eEPUIg1urGjsKPygS_!!6000000006090-0-tps-580-255.jpg"></p>
+</li>
+<li>
+<p>3 如果是三个节点，从上面的例子，我们可以看出来T(3) = 5. 从图可以看出来，每个节点都可能作为根节点，比如这三个节点是1，2，3，我们依次把遍历：</p>
+<ul>
+<li>假设1为根节点，2 3在根节点右边，根据2可知T(2) = 2</li>
+<li>假设2为根节点，1和2分别在两边，T(1)=1</li>
+<li>假设3为根节点， 1和2在根节点左边，T(2) = 2
+这样，我们遍历了所有情况, T(2)+T(1)+T(2) = 2 + 1 + 2 = 5
+所以结果是5，符合问题定义中的结果。</li>
+</ul>
+</li>
+<li>
+<p>3 如果有4个节点呢，比如 1 2 3 4. 同样按照上面的思路，有</p>
+<ul>
+<li>T(3)</li>
+<li>T(1) * T(2) 为什么是相乘？很好理解，是相交的关系，遍历下就清楚了</li>
+<li>T(2) * T(1)</li>
+<li>T(3)
+加起来： 5+2+2+5=14 结果符合问题定义的输出结果
+我们根据以上的遍历，大概能知道规律了：假定i是根节点，T[i-1]*T[n-i+1]就是当前情况的BST树个数，最终的BST树的个数，是遍历所有的节点作为根节点，然后把他们的个数相加。</li>
+</ul>
+</li>
+</ul>
+<p>我们把递归树画出来： f(3)表示3个节点的最终BST树个数，G(1,3)表示1作为根节点，3是总共的节点个数
+<img src="https://img.alicdn.com/imgextra/i2/O1CN01TOo2Es1zDUQANviIO_!!6000000006680-0-tps-654-433.jpg" alt="https://img.alicdn.com/imgextra/i2/O1CN01TOo2Es1zDUQANviIO_!!6000000006680-0-tps-654-433.jpg">
+得出结论： i是当前节点 n是总节点
+G(i, n) = f(i-1)*f(n-i)</p>
+<p>从递归树可以看出来，f(1) f(2) f(0)都存在重复计算。 我们缓存这些数据，避免重复计算。</p>
+<h2 id="代码实现s">代码实现(S)<a href="#代码实现s" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<p>暴力解法: 完全按照以上分析思路，递归求解</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">  <span style="color:#999;font-style:italic">// 获取i作为根节点的总BST树个数
+</span><span style="color:#999;font-style:italic"></span>  <span style="color:#6ab825;font-weight:bold">const</span> G = (i,n)=&gt;{
+      <span style="color:#6ab825;font-weight:bold">return</span> fn(i - <span style="color:#3677a9">1</span>) * fn(n - i)
+  }
+  
+  <span style="color:#999;font-style:italic">// 获取n个节点的总BST树个数
+</span><span style="color:#999;font-style:italic"></span>  <span style="color:#6ab825;font-weight:bold">const</span> fn = n=&gt;{
+      <span style="color:#6ab825;font-weight:bold">let</span> _ = <span style="color:#3677a9">0</span>
+      <span style="color:#6ab825;font-weight:bold">if</span>(n===<span style="color:#3677a9">0</span>||n===<span style="color:#3677a9">1</span>) <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">1</span>
+      <span style="color:#999;font-style:italic">// 遍历所有节点
+</span><span style="color:#999;font-style:italic"></span>      <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">let</span> i = <span style="color:#3677a9">1</span>; i &lt;= n; i++) {
+         <span style="color:#999;font-style:italic">// 将BST树相加
+</span><span style="color:#999;font-style:italic"></span>          _ += G(i, n)
+      }
+      <span style="color:#6ab825;font-weight:bold">return</span> _
+  }
+  console.log(fn(<span style="color:#3677a9">3</span>))
+</code></pre></div><p>dp解法（缓存递归树中重复计算的值）</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">  <span style="color:#999;font-style:italic">// 获取i作为根节点的总BST树个数
+</span><span style="color:#999;font-style:italic"></span>  <span style="color:#6ab825;font-weight:bold">const</span> G = (i,n)=&gt;{
+      <span style="color:#6ab825;font-weight:bold">return</span> fn(i - <span style="color:#3677a9">1</span>) * fn(n - i)
+  }
+  <span style="color:#999;font-style:italic">// 用来缓存数据
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">const</span> dp = []; 
+  <span style="color:#999;font-style:italic">// 获取n个节点的总BST树个数
+</span><span style="color:#999;font-style:italic"></span>  <span style="color:#6ab825;font-weight:bold">const</span> fn = n=&gt;{
+      <span style="color:#6ab825;font-weight:bold">let</span> _ = <span style="color:#3677a9">0</span>
+      <span style="color:#6ab825;font-weight:bold">if</span>(n===<span style="color:#3677a9">0</span>||n===<span style="color:#3677a9">1</span>) <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">1</span>;
+      <span style="color:#999;font-style:italic">// 如果有值，则直接返回
+</span><span style="color:#999;font-style:italic"></span>      <span style="color:#6ab825;font-weight:bold">if</span>(dp[n]) {
+        console.log(<span style="color:#ed9d13">&#39;命中缓存&#39;</span>)
+        <span style="color:#6ab825;font-weight:bold">return</span> dp[n]
+      }
+      <span style="color:#999;font-style:italic">// 遍历所有节点
+</span><span style="color:#999;font-style:italic"></span>      <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">let</span> i = <span style="color:#3677a9">1</span>; i &lt;= n; i++) {
+         <span style="color:#999;font-style:italic">// 将BST树相加
+</span><span style="color:#999;font-style:italic"></span>          _ += G(i, n)
+      }
+      <span style="color:#999;font-style:italic">// 缓存结果
+</span><span style="color:#999;font-style:italic"></span>      dp[n] = _
+      <span style="color:#6ab825;font-weight:bold">return</span> _
+  }
+  console.log(fn(<span style="color:#3677a9">3</span>))
+</code></pre></div><p>通过以上方式，可以看到缓存命中率，当n=3时只有一次。
+<img src="https://img.alicdn.com/imgextra/i4/O1CN01pKHWio1pUlCHLnccm_!!6000000005364-2-tps-810-166.png" alt="https://img.alicdn.com/imgextra/i4/O1CN01pKHWio1pUlCHLnccm_!!6000000005364-2-tps-810-166.png"></p>
+<p>正常理解应该命中三次才对。所以这种写法不能完全利用了重复计算。 我们可以从上到下的规则，比如以i为根的情况，我们先计算以i-1&hellip;1为i根的值。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">
+<span style="color:#6ab825;font-weight:bold">const</span> getNumberOfBSTs = n =&gt; {
+  <span style="color:#6ab825;font-weight:bold">const</span> T = []
+  <span style="color:#999;font-style:italic">// 已知结果
+</span><span style="color:#999;font-style:italic"></span>  T[<span style="color:#3677a9">0</span>] = <span style="color:#3677a9">1</span>
+  T[<span style="color:#3677a9">1</span>] = <span style="color:#3677a9">1</span>
+  <span style="color:#999;font-style:italic">// T[n]是表示最终的结果
+</span><span style="color:#999;font-style:italic"></span>  <span style="color:#6ab825;font-weight:bold">for</span>(<span style="color:#6ab825;font-weight:bold">let</span> i = <span style="color:#3677a9">2</span>; i &lt;= n; i++) {
+    <span style="color:#999;font-style:italic">// j从1到i 表示已计算的节点
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">for</span>(<span style="color:#6ab825;font-weight:bold">let</span> j = <span style="color:#3677a9">1</span>; j &lt;=i; j++) {
+        <span style="color:#999;font-style:italic">// 这个是根据上面递归树，推导出的结论
+</span><span style="color:#999;font-style:italic"></span>        T[i] += T[j-<span style="color:#3677a9">1</span>]*T[i-j]
+    }
+  }
+}
+</code></pre></div><h2 id="时间复杂度分析">时间复杂度分析<a href="#时间复杂度分析" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<p>从上面代码可以看出， 双层循环时间复杂度为O(n^2)</p>
+
+      </div>
+<link rel="stylesheet"
+      href="https://emailoctopus.com/bundles/emailoctopuslist/css/1.6/form.css"
+>
+<style>
+.emailoctopus-form-wrapper {
+    background: #f9f9f9;
+    font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+    line-height: 1.5em;
+    overflow: hidden;
+    color: #666;
+    font-size: 16px;
+    border: 1px solid #d1d1d1;
+    box-shadow: none;
+    clear: both;
+    margin: 20px 0px;
+    text-align: center;
+    width: 100%;
+    max-width: 100% !important;
+    float: left;
+    padding: 5%;
+}
+
+.emailoctopus-heading {
+	text-align: center;
+    margin: 0px 0px 10px;
+    font-size: 28px;
+    color: #707070;
+}
+.submit-btn {
+	width: 100%;
+    float: none;
+    margin-top: 5px;
+    color: #fff !important;
+    padding: 11px 0px;
+    font-size: 18px;
+    background: #0d6db8 !important;
+    border-radius: 3px;
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+    height: 42px;
+    max-width: 100% !important;
+}
+
+.emailoctopus-form-centered .emailoctopus-form-row input {
+	max-width: 100% !important;
+	border: 1px solid #d6d6d6;
+    border-radius: 3px;
+}
+
+</style>
+<div class="emailoctopus-form-wrapper emailoctopus-form-centered null">
+  <h2 class="emailoctopus-heading">
+    Be the first to know when I post cool stuff
+  </h2>
+  <p>Subscribe to get my latest posts by email.</p>
+  <p class="emailoctopus-success-message">
+  </p>
+  <p class="emailoctopus-error-message">
+  </p>
+  <form action="https://emailoctopus.com/lists/a4e5f409-d1cd-11eb-96e5-06b4694bee2a/members/embedded/1.3s/add"
+        method="post"
+        data-message-success="Thanks for subscribing!"
+        data-message-missing-email-address="Your email address is required."
+        data-message-invalid-email-address="Your email address looks incorrect, please try again."
+        data-message-bot-submission-error="This doesn't look like a human submission."
+        data-message-consent-required="Please check the checkbox to indicate your consent."
+        data-message-invalid-parameters-error="This form has missing or invalid fields."
+        data-message-unknown-error="Sorry, an unknown error has occurred. Please try again later."
+        class="emailoctopus-form"
+        data-sitekey="6LdYsmsUAAAAAPXVTt-ovRsPIJ_IVhvYBBhGvRV6"
+  >
+    <div class="emailoctopus-form-row">
+      <input id="field_0"
+             name="field_0"
+             type="email"
+             required="required"
+             placeholder="Email address" 
+      >
+    </div>
+    <div aria-hidden="true"
+         class="emailoctopus-form-row-hp"
+    >
+      <input type="text"
+             name="hpc4b27b6e-eb38-11e9-be00-06b4694bee2a"
+             tabindex="-1"
+             autocomplete="nope"
+      >
+    </div>
+    <div class="emailoctopus-form-row-subscribe">
+      <input type="hidden"
+             name="successRedirectUrl"
+      >
+      <button type="submit"
+      class="submit-btn"
+              style="background-color: rgb(224, 224, 224); color: rgb(0, 0, 0); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, Verdana, sans-serif;"
+      >
+        Subscribe
+      </button>
+    </div>
+  </form>
+</div>
+<script src="https://emailoctopus.com/bundles/emailoctopuslist/js/1.6/form-recaptcha.js">
+</script>
+<script src="https://emailoctopus.com/bundles/emailoctopuslist/js/1.6/form-embed.js">
+</script>
+
+
+      <section class="social-sharing">
+
+  <h4>Share on</h4>
+
+  <a href="https://twitter.com/intent/tweet?via=codediggerfelix&text=Algorithm%20Series%20-%20DP%20https%3a%2f%2fxingmxteam.github.io%2falgorithm-series-dp%2f" class="btn btn-twitter btn-social" title="Share on Twitter">
+    <i class="fab fa-fw fa-twitter" aria-hidden="true"></i>
+    <span>Twitter</span>
+  </a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fxingmxteam.github.io%2falgorithm-series-dp%2f" class="btn btn-facebook btn-social" title="Share on Facebook">
+    <i class="fab fa-fw fa-facebook" aria-hidden="true"></i>
+    <span> Facebook</span>
+  </a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxingmxteam.github.io%2falgorithm-series-dp%2f" class="btn btn-linkedin btn-social" title="Share on LinkedIn">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i>
+    <span> LinkedIn</span>
+  </a>
+
+</section>
+
+
+      
+
+
+      
+        <script>
+  talkyardServerUrl='';
+  talkyardLogLevel = 'warn';
+</script>
+<script async defer src=""></script>
+<section>
+  <div class="talkyard-comments" data-discussion-id="" style="margin-top: 45px;">
+    <noscript>Please enable JavaScript to view comments.</noscript>
+  </div>
+</section>
+
+      
+
+      <footer>
+        
+
+
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+
+    
+    Crafted with ❤️ in Hang Zhou, CHINA.
+    
+      · © 2021
+    
+
+    <div class="creative-commons-license">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+        This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </div>
+
+
+    
+    <ul>
+      
+        
+          <li>
+            <a href="https://github.com/XingMXTeam/" aria-label="Github"   >
+              <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+        
+          <li>
+            <a href="https://twitter.com/codediggerfelix/" aria-label="Twitter"   >
+              <i class="fab fa-twitter fa-2x" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+    </ul>
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-199510588-1', 'auto');
+
+  ga('require', 'outboundLinkTracker');
+
+  ga('send', 'pageview');
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" async></script>
+
+
+
+  </body>
+
+</html>
