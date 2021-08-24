@@ -245,8 +245,7 @@ Based on the above analyze, we can probably knows the rule: assuming that i is t
       <span style="color:#6ab825;font-weight:bold">return</span> _
   }
   console.log(fn(<span style="color:#3677a9">3</span>))
-</code></pre></div><p><img src="https://img.alicdn.com/imgextra/i4/O1CN01pKHWio1pUlCHLnccm_!!6000000005364-2-tps-810-166.png" alt="https://img.alicdn.com/imgextra/i4/O1CN01pKHWio1pUlCHLnccm_!!6000000005364-2-tps-810-166.png"></p>
-<p>There shoule be three hits. But we only have one. So this way, we cannot fully utilize the repeated calculations. We can rule from to bottom. For example, in the case of i as the root, we first calculate the value with i-1&hellip;1 as the value of the root of i.</p>
+</code></pre></div><p>There should be three hits. But we only have one. So this way, we cannot fully utilize the repeated calculations. We can rule from to bottom. For example, in the case of i as the root, we first calculate the value with i-1&hellip;1 as the value of the root of i.</p>
 <p>so, we can optimze as follows:</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">
 <span style="color:#6ab825;font-weight:bold">const</span> getNumberOfBSTs = n =&gt; {
